@@ -24,10 +24,10 @@ class TripsController < ApplicationController
   def complete
   end
 
-  private passenger_params
+  private
 
-  def passenger_params
-    return params.require(:passenger).permit(:name, :phone_num)
+  def trip_params
+    return params.require(:trip).permit(:name, :phone_num)
 	end
 	
 end

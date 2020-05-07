@@ -26,6 +26,7 @@ describe PassengersController do
       get passenger_path(-1)
       
       must_respond_with :not_found
+    end
   end
 
   describe "new" do

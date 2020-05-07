@@ -18,7 +18,7 @@ class PassengersController < ApplicationController
   end
 
   def create
-    params = passanger_params
+    params = passenger_params
 
     @passenger = Passenger.new(passenger_params)
     if !params.nil?
@@ -38,7 +38,7 @@ class PassengersController < ApplicationController
     @passenger = Passenger.find_by(id: params[:id])
 
     if @passenger.nil?
-      head :not_found
+      redirect_to passengers_path
       return
     end
   end
