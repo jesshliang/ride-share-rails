@@ -4,4 +4,45 @@
     Name: <%= @passenger.name %> <br>
     Phone Number: <%= @passenger.phone_num %>
   </p>
+  <div class="modify-options">
+    <div><%= link_to "Edit", edit_passenger_path(@passenger.id) %></div>
+    <div><%= link_to "Delete", passenger_path(@passenger.id), method: :delete %></div>
+  </div>
+
+  <%# trips list %>
+  <section>
+    <h3>Trips</h3>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Driver</th>
+        <th>Passenger</th>
+        <th>Price</th>
+        <th>Rating</th>
+      </tr>
+        <% @passenger.trips.each do |trip| %>
+          <tr>
+            <td>
+              <%= trip.id %>
+            </td>
+            <td>
+              <%= trip.date %>
+            </td>
+            <td>
+              <%= trip.driver.name %>
+            </td>
+            <td>
+              <%= trip.passenger.name %>
+            </td>
+            <td>
+              <%= number_to_currency(trip.cost / 100.0) %>
+            </td>
+            <td>
+              <%= trip.rating %>
+            </td>
+          </tr>
+        <% end %>
+    </table>
+  </section>
 </section>
