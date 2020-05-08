@@ -18,13 +18,11 @@ describe PassengersController do
     it "responds with success when showing an existing valid passenger" do
       test_passenger = Passenger.create(name: "test person", phone_num: "1234567")
       get passenger_path(test_passenger.id)
-      
       must_respond_with :success
     end
     
     it "responds with 404 with an invalid passenger id" do
       get passenger_path(-1)
-      
       must_respond_with :not_found
     end
   end
@@ -63,9 +61,7 @@ describe PassengersController do
       expect {
         post passengers_path, params: passenger_hash
       }.wont_change 'Passenger.count'
-      
       must_redirect_to passengers_path
-      
     end
   end
 
@@ -73,13 +69,11 @@ describe PassengersController do
     it "responds with success when getting the edit page for an existing, valid passenger" do
       test_passenger = Passenger.create(name: "test person", phone_num: "1234567")
       get edit_passenger_path(test_passenger.id)
-      
       must_respond_with :success
     end
     
     it "responds with redirect when getting the edit page for a non-existing passenger" do
       get edit_passenger_path(-1)
-      
       must_respond_with :redirect
       must_redirect_to passengers_path
     end
@@ -96,14 +90,12 @@ describe PassengersController do
       new_passenger = Passenger.find_by(id: test_passenger.id)
       
       expect {delete passenger_path(new_passenger.id) }.must_differ 'Passenger.count', -1
-      
       must_respond_with :redirect
       must_redirect_to passengers_path
     end
     
     it "does not change the db when the passenger does not exist, then responds with " do
       expect {delete passenger_path(-1)}.wont_change 'Passenger.count'
-      
       must_respond_with :redirect
       must_redirect_to passengers_path
     end
