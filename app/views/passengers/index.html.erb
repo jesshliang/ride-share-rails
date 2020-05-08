@@ -1,0 +1,13 @@
+  
+<section>
+  <h2>Passengers</h2>
+  <ol>
+    <% @passengers.each do |passenger| %>
+      <li>
+        <%= passenger.name %>
+        <%= passenger.phone_num %>
+      </li>
+    <% end %>
+  </ol>
+
+<section>
