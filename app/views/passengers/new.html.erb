@@ -1,3 +1,15 @@
 <section>
-a form for creating a new passenger
+<h2>Add a New Passenger</h2>
+
+    <%= form_with model: @passenger, class: "passenger-form" do |f| %>
+      <h3>Please enter information to add a new passenger: </h3>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :phone_num %>
+      <%= f.text_field :phone_num %>
+
+      <%= f.submit "Add Passenger", class: "submit-button" %>
+    <% end %>
 </section>
