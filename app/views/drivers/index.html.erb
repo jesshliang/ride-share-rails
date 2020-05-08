@@ -1,0 +1,9 @@
+<h2>All Drivers</h2>
+
+<ul>
+	<% @drivers.each do |driver| %>
+		<li>
+			<%= driver.name %> | <%= driver.vin %>
+		</li>
+	<% end %>
+</ul>

@@ -1,0 +1,23 @@
+<section>
+
+	<section>
+		<h2><%= @driver.name %></h2>
+		<%= @driver.vin %><br>
+		<%= @driver.available %>
+
+		<h3>Trips</h3>
+		<ul>
+			<% @driver.trips.each do |trip| %>
+			<li>
+					<%= trip.id %> | <%= trip.driver_id %> | <%= trip.passenger_id %> | <%= trip.date %> | <%= trip.rating %> | <%= trip.cost %> 
+			</li>
+			<% end %>
+		</ul>
+	</section>
+
+	<nav class="options">
+		<%= link_to 'Edit', edit_driver_path(@driver) %><br>
+		<%= link_to 'Delete', driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"} %>
+		<%= link_to 'Back to all drivers', drivers_path %>
+	</nav>
+</section>
