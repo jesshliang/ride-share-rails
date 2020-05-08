@@ -21,7 +21,7 @@ class DriversController < ApplicationController
 		@driver = Driver.new(driver_params)
 
 		if @driver.save
-			redirect_to root_path
+			redirect_to driver_path(@driver.id)
 			return
 		else
 			render :new
@@ -33,7 +33,7 @@ class DriversController < ApplicationController
 		@driver = Driver.find_by(id: params[:id])
 
 		if @driver.nil?
-			head :not_found
+			redirect_to drivers_path
 			return
 		end
 	end
@@ -57,7 +57,7 @@ class DriversController < ApplicationController
 		@driver = Driver.find_by(id: params[:id])
 
 		if @driver.nil?
-			head :not_found
+			redirect_to drivers_path
 			return
 		end
 
