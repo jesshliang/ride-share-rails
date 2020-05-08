@@ -1,5 +1,6 @@
 class Passenger < ApplicationRecord
 	has_many :trips
+	validates :phone_num, :name, presence: true
 
 	def total_charged
     total = 0
