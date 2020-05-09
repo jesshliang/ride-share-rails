@@ -100,4 +100,14 @@ describe PassengersController do
       must_redirect_to passengers_path
     end
   end
+
+  describe "request trip" do
+    it "creates a new trip" do
+      test_passenger = Passenger.create(name: "test person", phone_num: "1234567")
+
+      expect {
+        get request_trip_path(test_passenger.id)
+      }.must_change 'test_passenger.trips.count', 1
+    end
+  end
 end

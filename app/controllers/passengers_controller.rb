@@ -74,6 +74,32 @@ class PassengersController < ApplicationController
     redirect_to passengers_path
     return 
   end
+ 
+  def request_trip
+    passenger_id = params[:id]
+    @passenger = Passenger.find_by(id: passenger_id)
+
+    if @passenger.nil?
+      redirect_to passengers_path
+      return
+    end
+
+    driver = Driver.all.first
+    date = DateTime.now
+
+    trip_params = {
+      trip: {
+        date: date,
+        driver_id: driver.id,
+        passenger_id: passenger_id,
+        rating: nil,
+        cost: nil,
+      }
+    }
+
+    redirect_to trips_path, params: trip_params
+    return
+  end
 
   # def complete
   #   @passenger = Passenger.find_by(id: params[:id])
