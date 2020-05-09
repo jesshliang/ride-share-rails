@@ -75,27 +75,27 @@ class PassengersController < ApplicationController
     return 
   end
 
-  def complete
-    @passenger = Passenger.find_by(id: params[:id])
+  # def complete
+  #   @passenger = Passenger.find_by(id: params[:id])
 
-    if @passenger.nil?
-      redirect_to passengers_path
-      return
-    end
+  #   if @passenger.nil?
+  #     redirect_to passengers_path
+  #     return
+  #   end
 
-    if @passenger.completion_date == nil
-      @passenger.completion_date = Time.now
-    else
-      @passenger.completion_date = nil
-    end
+  #   if @passenger.completion_date == nil
+  #     @passenger.completion_date = Time.now
+  #   else
+  #     @passenger.completion_date = nil
+  #   end
 
-    unless @passenger.save 
-      redirect_to passengers_path
-    end
+  #   unless @passenger.save 
+  #     redirect_to passengers_path
+  #   end
 
-    redirect_to passengers_path
-    return 
-  end
+  #   redirect_to passengers_path
+  #   return 
+  # end
 
   private 
   def passenger_params
