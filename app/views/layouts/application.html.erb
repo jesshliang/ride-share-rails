@@ -10,6 +10,12 @@
   </head>
 
   <body>
+    <nav>
+			<%= link_to "Manage Passengers", passengers_path %> | 
+			<%= link_to "Manage Drivers", drivers_path %> | 
+			<%= link_to "Create New Passenger", new_passenger_path %> | 
+			<%= link_to "Create New Driver", new_driver_path %>
+	  </nav>
     <%= yield %>
   </body>
 </html>
