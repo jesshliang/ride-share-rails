@@ -1,11 +1,12 @@
 <section>
   <h2>Passenger</h2>
-  <p>
-    Name: <%= @passenger.name %> <br>
-    Phone Number: <%= @passenger.phone_num %>
-  </p>
+    <p>
+      Name: <%= @passenger.name %> <br>
+      Phone Number: <%= @passenger.phone_num %>
+    </p>
   
   <div>Total Charged: <%= number_to_currency(@passenger.total_charged / 100.0) %></div>
+  <div><%= link_to "Request a Trip", trips_path, method: :post%></div>
   
   <div class="modify-options">
     <div><%= link_to "Edit", edit_passenger_path(@passenger.id) %></div>
@@ -32,7 +33,6 @@
               <%= trip.date %>
             </td>
             <td>
-              <%= trip.driver.name %>
               <%= link_to trip.driver.name, driver_path(trip.driver.id) %>
             </td>
             <td>
