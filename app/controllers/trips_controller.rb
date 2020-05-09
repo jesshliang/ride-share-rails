@@ -9,6 +9,7 @@ class TripsController < ApplicationController
 
     if @trip.nil?
       head :not_found
+    end
 	end
 	
   def new
