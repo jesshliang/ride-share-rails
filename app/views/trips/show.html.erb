@@ -1,0 +1,16 @@
+<section>
+  <h2>Trip #<%= @trip.id %></h2>
+    <p>
+      Date: <%= @trip.date %> <br>
+      Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver.id) %> <br>
+      Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger.id) %> <br>
+      Rating: <%= @trip.rating %> <br>
+      Cost: <%= @trip.cost %> <br>
+    </p>
+
+  <div class="modify-options">
+    <div><%= link_to "Rate Trip" %></div>
+    <div><%= link_to "Edit", edit_trip_path(@trip.id) %></div>
+    <div><%= link_to "Delete", trip_path(@trip.id), method: :delete %></div>
+  </div>
+</section> 
