@@ -124,7 +124,6 @@ describe DriversController do
     end
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      skip
       # Note: This will not pass until ActiveRecord Validations lesson
       # Arrange
       # Ensure there is an existing driver saved
@@ -136,6 +135,21 @@ describe DriversController do
 
       # Assert
       # Check that the controller redirects
+      driver = Driver.create(name: 'Leroy Jenkins', vin: 'SU9PYDRK6214WL15M')
+      driver_id = driver.id
+
+      update_driver = {
+        driver: {
+          name: '',
+          vin: ''
+        }
+      }
+
+      expect {
+        patch driver_path(driver_id), params: update_driver
+      }.wont_change 'Driver.count'
+
+      must_redirect_to driver_path(driver_id)
     end
   end
 

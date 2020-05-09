@@ -48,7 +48,8 @@ class DriversController < ApplicationController
 			redirect_to drivers_path
 			return
 		else
-			render :edit
+			# render :edit
+			redirect_to driver_path(@driver.id)
 			return
 		end
 	end
