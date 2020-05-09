@@ -5,7 +5,7 @@
       Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver.id) %> <br>
       Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger.id) %> <br>
       Rating: <%= @trip.rating %> <br>
-      Cost: <%= @trip.cost %> <br>
+      Cost: <%= number_to_currency(@trip.cost / 100.00) %> <br>
     </p>
 
   <div class="modify-options">
