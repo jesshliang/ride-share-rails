@@ -58,9 +58,15 @@ describe DriversController do
     end
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      skip
+      driver_hash = {
+        driver: {
+          name: '',
+          vin: ''
+        }
+      }
+
       expect {
-        post drivers_path
+        post drivers_path, params: driver_hash
       }.wont_change 'Driver.count'
 
       must_redirect_to drivers_path
