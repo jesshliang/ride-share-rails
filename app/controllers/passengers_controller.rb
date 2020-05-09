@@ -74,28 +74,55 @@ class PassengersController < ApplicationController
     redirect_to passengers_path
     return 
   end
+  
+	# Commenting out for nested routes- return later 
+  # def request_trip
+  #   passenger_id = params[:id]
+  #   @passenger = Passenger.find_by(id: passenger_id)
 
-  def complete
-    @passenger = Passenger.find_by(id: params[:id])
+  #   if @passenger.nil?
+  #     redirect_to passengers_path
+  #     return
+  #   end
 
-    if @passenger.nil?
-      redirect_to passengers_path
-      return
-    end
+  #   driver = Driver.all.first
+  #   date = DateTime.now
 
-    if @passenger.completion_date == nil
-      @passenger.completion_date = Time.now
-    else
-      @passenger.completion_date = nil
-    end
+  #   trip_params = {
+  #     trip: {
+  #       date: date,
+  #       driver_id: driver.id,
+  #       passenger_id: passenger_id,
+  #       rating: nil,
+  #       cost: nil,
+  #     }
+  #   }
 
-    unless @passenger.save 
-      redirect_to passengers_path
-    end
+  #   redirect_to trips_path, params: trip_params
+  #   return
+  # end
 
-    redirect_to passengers_path
-    return 
-  end
+  # def complete
+  #   @passenger = Passenger.find_by(id: params[:id])
+
+  #   if @passenger.nil?
+  #     redirect_to passengers_path
+  #     return
+  #   end
+
+  #   if @passenger.completion_date == nil
+  #     @passenger.completion_date = Time.now
+  #   else
+  #     @passenger.completion_date = nil
+  #   end
+
+  #   unless @passenger.save 
+  #     redirect_to passengers_path
+  #   end
+
+  #   redirect_to passengers_path
+  #   return 
+  # end
 
   private 
   def passenger_params

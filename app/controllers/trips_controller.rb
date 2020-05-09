@@ -1,16 +1,32 @@
 class TripsController < ApplicationController
 
-	def index
+  def index
+    
 	end
 	
   def show
+    @trip = Trip.find_by(id: params[:id])
+
+    if @trip.nil?
+      head :not_found
 	end
 	
   def new
-	end
-	
-  def create
-	end
+  end
+  
+	# Commenting out for nested routes- return later
+  # def create
+  #   if !(params[:trip].nil?)
+  #     @trip = Trip.new(trip_params)
+
+  #     if @trip.save
+  #       redirect_to passenger_path(@trip.passenger_id)
+  #       return
+  #     end
+  #   else
+  #     redirect_to root_path
+  #   end
+	# end
 	
   def edit
 	end
@@ -27,7 +43,7 @@ class TripsController < ApplicationController
   private
 
   def trip_params
-    return params.require(:trip).permit(:name, :phone_num)
+    return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
 	end
 	
 end
