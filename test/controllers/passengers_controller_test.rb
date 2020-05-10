@@ -57,16 +57,17 @@ describe PassengersController do
     
     it "does not create a passenger if the form data violates Passenger validations, and responds with a redirect" do
       passenger_hash = {
-        name: '',
-        phone_num: ''
+        passenger: {
+          name: '',
+          phone_num: ''
+        }
       }
       
       expect {
         post passengers_path, params: passenger_hash
       }.wont_change 'Passenger.count'
       
-      #must_redirect_to passengers_path
-      assert_template :new
+      must_respond_with :ok
     end
   end
 
