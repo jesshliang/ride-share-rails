@@ -18,7 +18,11 @@ class Driver < ApplicationRecord
 		total = 0
 
 		self.trips.each do |trip|
-			total += trip.cost
+			if trip.cost > 1.65
+				total += ((trip.cost - 1.65) * 0.80)
+			else
+				total += (trip.cost * 0.80)
+			end
 		end
 
 		return total
