@@ -1,6 +1,6 @@
 <h2>All Drivers</h2>
 
-<ul>
+<ul class="index--list-all">
 	<% @drivers.each do |driver| %>
 		<li>
 			<%= link_to driver.name, driver_path(driver) %>

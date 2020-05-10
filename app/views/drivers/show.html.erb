@@ -1,5 +1,4 @@
 <section>
-
 	<section>
 		<h2><%= @driver.name %></h2>
 		<ul>
@@ -16,7 +15,23 @@
 				Total Earnings: <%= number_to_currency(@driver.total_earnings / 100.0) %>
 			</li>
 		</ul>
+  </section>
 
+  <nav class="options">
+    <ul>
+      <li>
+	    	<%= link_to 'Edit', edit_driver_path(@driver) %>
+      </li>
+      <li>
+		    <%= link_to 'Delete', driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"} %>
+      </li>
+      <li>
+	    	<%= link_to 'Back to all drivers', drivers_path %>
+      </li>
+    </ul>
+	</nav>
+
+  <section>
 		<h3>Trips</h3>
 		<table>
       <tr>
@@ -51,10 +66,4 @@
         <% end %>
     </table>
 	</section>
-
-	<nav class="options">
-		<%= link_to 'Edit', edit_driver_path(@driver) %><br>
-		<%= link_to 'Delete', driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"} %><br>
-		<%= link_to 'Back to all drivers', drivers_path %>
-	</nav>
 </section>

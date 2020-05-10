@@ -18,6 +18,34 @@ class TripsController < ApplicationController
   end
   
   def create
+    # passenger_trips = Trip.where(passenger_id: params[:passenger_id])
+    
+    # passenger_trips.each do |trip|
+    #   if trip.rating == nil
+    #     flash[:notice] = "Please complete and rate your previous trip"
+    #     redirect_to passenger_path(params[:passenger_id])
+    #     return
+    #   end
+    # end
+    
+    # driver = Driver.get_driver
+    
+    # if driver == nil
+    #   flash[:notice] = "There are no available drivers"
+    #   redirect_to passenger_path(params[:passenger_id])
+    #   return
+    # end
+    
+    # date = DateTime.now
+    # cost = rand(1000..9999).to_i
+    
+    # trip_hash = {
+    #   date: date,
+    #   driver_id: driver.id,
+    #   passenger_id: params[:passenger_id],
+    #   rating: nil,
+    #   cost: cost,
+    # }
     @trip = Trip.new(trip_params)
     if @trip.save
       flash[:success] = 'Trip added'
@@ -25,6 +53,7 @@ class TripsController < ApplicationController
     else
       render :new
     end
+  end
 
     # if !(params[:trip].nil?)
     #   @trip = Trip.new(trip_params)
@@ -36,7 +65,6 @@ class TripsController < ApplicationController
     # else
     #   redirect_to root_path
     # end
-	end
 	
   def edit
     id = params[:id]
@@ -73,12 +101,12 @@ class TripsController < ApplicationController
     if @trip.nil?
       head :not_found
       return
+    else
+      @trip.destroy
+      redirect_to drivers_path
+      flash[:success] = 'Trip removed'
+      return
     end
-
-    @trip.destroy
-    redirect_to drivers_path
-    flash[:success] = 'Trip removed'
-    return
   end
   
   def rate
