@@ -8,37 +8,81 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(id: params[:id])
 
     if @trip.nil?
-      head :not_found
+      redirect_to trips_path, notice: 'Trip not found'
+      return
     end
 	end
 	
   def new
+    @trip = Trip.new
   end
   
   def create
-    if !(params[:trip].nil?)
-      @trip = Trip.new(trip_params)
-
-      if @trip.save
-        redirect_to passenger_path(@trip.passenger_id)
-        return
-      end
+    @trip = Trip.new(trip_params)
+    if @trip.save
+      flash[:success] = 'Trip added'
+      redirect_to trips_path(@trip.id)
     else
-      redirect_to root_path
+      render :new, :bad_request
     end
+
+    # if !(params[:trip].nil?)
+    #   @trip = Trip.new(trip_params)
+
+    #   if @trip.save
+    #     redirect_to passenger_path(@trip.passenger_id)
+    #     return
+    #   end
+    # else
+    #   redirect_to root_path
+    # end
 	end
 	
   def edit
+    id = params[:id]
+    @trip = Trip.find_by(id: id)
+
+    if @trip.nil?
+      head :not_found
+      return
+    end
 	end
 	
   def update
+    id = params[:id]
+    @trip = Trip.find_by(id: id)
+
+    if @trip.nil?
+      head :not_found
+      return
+    elsif @trip.update(trip_params)
+      redirect_to trips_path(@trip.id)
+      flash[:success] = 'Trip updated'
+      return
+    else
+      render :edit
+      return
+    end
 	end
 	
   def destroy
+    id = params[:id]
+    @trip = Trip.find_by(id: id)
+
+    
+    if @trip.nil?
+      head :not_found
+      return
+    end
+
+    @trip.destroy
+    redirect_to drivers_path
+    flash[:success] = 'Trip removed'
+    return
 	end
 	
-  def complete
-  end
+  # def complete
+  # end
 
   private
 
