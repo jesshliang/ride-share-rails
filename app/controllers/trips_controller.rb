@@ -21,9 +21,9 @@ class TripsController < ApplicationController
     @trip = Trip.new(trip_params)
     if @trip.save
       flash[:success] = 'Trip added'
-      redirect_to trips_path(@trip.id)
+      redirect_to trip_path(@trip.id)
     else
-      render :new, :bad_request
+      render :new
     end
 
     # if !(params[:trip].nil?)

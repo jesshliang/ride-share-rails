@@ -15,7 +15,7 @@ describe TripsController do
     it "responds with 404 with an invalid trip id" do
       get trip_path(-1)
 
-      must_respond_with :not_found
+      must_redirect_to trips_path
     end
   end
 
@@ -44,17 +44,25 @@ describe TripsController do
       expect(new_trip.driver_id).must_equal data_hash[:trip][:driver_id]
       expect(new_trip.passenger_id).must_equal data_hash[:trip][:passenger_id]
 
-      must_redirect_to passenger_path(new_trip.passenger_id)
+      must_redirect_to trip_path(new_trip.id)
     end
 
     it "does not create a trip if the form data violates Trip validations, and responds with a redirect" do
-      data_hash = {}
+      data_hash = {
+        trip: {
+          date: '',
+          rating: '',
+          cost: '',
+          driver_id: '',
+          passenger_id: ''
+        }
+      }
 
       expect {
         post trips_path, params: data_hash
       }.wont_change 'Trip.count'
 
-      must_redirect_to root_path
+      must_respond_with :ok
     end
   end
 
