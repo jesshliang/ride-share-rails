@@ -11,7 +11,7 @@ class Driver < ApplicationRecord
 			sum_rating += trip.rating
 		end
 
-		return (sum_rating / self.trips.length)
+		self.trips.length > 0 ? (sum_rating / self.trips.length) : sum_rating
 	end
 
 	def total_earnings

@@ -15,19 +15,18 @@ class TripsController < ApplicationController
   def new
   end
   
-	# Commenting out for nested routes- return later
-  # def create
-  #   if !(params[:trip].nil?)
-  #     @trip = Trip.new(trip_params)
+  def create
+    if !(params[:trip].nil?)
+      @trip = Trip.new(trip_params)
 
-  #     if @trip.save
-  #       redirect_to passenger_path(@trip.passenger_id)
-  #       return
-  #     end
-  #   else
-  #     redirect_to root_path
-  #   end
-	# end
+      if @trip.save
+        redirect_to passenger_path(@trip.passenger_id)
+        return
+      end
+    else
+      redirect_to root_path
+    end
+	end
 	
   def edit
 	end
