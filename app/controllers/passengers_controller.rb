@@ -8,7 +8,6 @@ class PassengersController < ApplicationController
 
     if @passenger.nil?
       head :not_found
-      #redirect_to root_path
       return
     end
   end
@@ -19,13 +18,14 @@ class PassengersController < ApplicationController
 
   def create
     @passenger = Passenger.new(passenger_params)
-
-    if @passenger.save
-      redirect_to passenger_path(@passenger.id)
-      return
-    else
-      redirect_to passengers_path
-      return
+    if !params.nil?
+      if @passenger.save
+        redirect_to passenger_path(@passenger.id)
+        return
+      else
+        render :new, :bad_request
+        return
+      end
     end
   end
 
