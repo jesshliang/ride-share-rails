@@ -18,6 +18,7 @@ class PassengersController < ApplicationController
 
   def create
     @passenger = Passenger.new(passenger_params)
+<<<<<<< HEAD
     
     if @passenger.save
       redirect_to passenger_path(@passenger.id)
@@ -25,6 +26,17 @@ class PassengersController < ApplicationController
     else
       render :new, :bad_request
       return
+=======
+
+    if !params.nil?
+      if @passenger.save
+        redirect_to passenger_path(@passenger.id)
+        return
+      else
+        render :new
+        return
+      end
+>>>>>>> 3d86e969fe5eb9926127d6a62251dca872ab5002
     end
   end
 

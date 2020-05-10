@@ -69,7 +69,7 @@ describe DriversController do
         post drivers_path, params: driver_hash
       }.wont_change 'Driver.count'
 
-      must_redirect_to drivers_path
+      must_respond_with :ok
     end
   end
   

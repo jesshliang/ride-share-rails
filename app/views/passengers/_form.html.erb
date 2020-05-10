@@ -1,0 +1,24 @@
+<% if @passenger.errors.any? %>
+	<ul>
+		<% @passenger.errors.each do |column, message| %>
+			<li>
+				<%= column %> <%= message %>
+			</li>
+		<% end %>
+	</ul>
+<% end %>
+
+<%= form_with model: @passenger, class: "passenger-form" do |f| %>
+	<div class="form">
+		<section>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+		</section>
+		<section>
+			<%= f.label :phone_num %>
+			<%= f.text_field :phone_num %>
+		</section>
+		<section>
+			<%= f.submit action_name, class: "submit-button" %>
+		</section>
+<% end %>

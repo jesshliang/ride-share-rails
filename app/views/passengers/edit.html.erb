@@ -1,15 +1,5 @@
 <section>
   <h2>Edit Passenger</h2>
 
-  <%= form_with model: @passenger, class: "passenger-form" do |f| %>
-    <h3>Please enter information to edit this passenger: </h3>
-
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-
-    <%= f.label :phone_num %>
-    <%= f.text_field :phone_num %>
-
-    <%= f.submit "Update Passenger", class: "submit-button" %>
-  <% end %>
+  <%= render partial: "form", locals: { action_name: "Edit Passenger" } %>
 </section>
