@@ -27,4 +27,8 @@ class Driver < ApplicationRecord
 
 		return total
 	end
+
+	def available?
+		self.available = !self.available
+	end
 end

@@ -124,17 +124,6 @@ describe DriversController do
     end
 
     it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
-      # Note: This will not pass until ActiveRecord Validations lesson
-      # Arrange
-      # Ensure there is an existing driver saved
-      # Assign the existing driver's id to a local variable
-      # Set up the form data so that it violates Driver validations
-
-      # Act-Assert
-      # Ensure that there is no change in Driver.count
-
-      # Assert
-      # Check that the controller redirects
       driver = Driver.create(name: 'Leroy Jenkins', vin: 'SU9PYDRK6214WL15M')
       driver_id = driver.id
 

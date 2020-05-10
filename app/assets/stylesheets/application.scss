@@ -14,5 +14,54 @@
 
 /* Custom bootstrap variables must be set or imported *before* bootstrap. */
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500&family=Roboto:wght@400;700&display=swap');
 
 @import "**/*";
+
+body {
+	font-family: 'Roboto', sans-serif;
+}
+
+header {
+	background-color: #888;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.75em 1em;
+}
+
+header h1 {
+	font-family: 'Jost', sans-serif;
+	font-size: 2em;
+	margin: 0;
+}
+
+header nav a {
+	margin: 0 1em;
+}
+
+h2 {
+	font-family: 'Jost', sans-serif;
+}
+
+main {
+	min-height: 100vh;
+	padding: 3em;
+}
+
+footer {
+	background-color: #444;
+	text-align: center;
+}
+
+// Tables
+
+table {
+	width: 75vw;
+}
+
+#container {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}

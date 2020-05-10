@@ -1,6 +1,7 @@
 class PassengersController < ApplicationController
   def index
-    @passengers = Passenger.all
+    #@passengers = Passenger.all
+    @passengers = Passenger.order(:id).all
   end
 
   def show
@@ -18,13 +19,11 @@ class PassengersController < ApplicationController
 
   def create
     @passenger = Passenger.new(passenger_params)
-    
     if @passenger.save
+      flash[:success] = 'Passenger added'
       redirect_to passenger_path(@passenger.id)
-      return
     else
       render :new
-      return
     end
   end
 
@@ -43,13 +42,12 @@ class PassengersController < ApplicationController
     if @passenger.nil?
       head :not_found
       return
-    end
-
-    if @passenger.update(passenger_params)
+    elsif @passenger.update(passenger_params)
       redirect_to passenger_path(@passenger.id)
+      flash[:success] = 'Passenger updated'
       return
     else
-      render :edit, :bad_request
+      render :edit
       return
     end
   end
@@ -64,12 +62,11 @@ class PassengersController < ApplicationController
     end
 
     @passenger.destroy
-
     redirect_to passengers_path
+    flash[:success] = 'Passenger removed'
     return 
   end
   
-	# Commenting out for nested routes- return later 
   def request_trip
     passenger_id = params[:id]
     @passenger = Passenger.find_by(id: passenger_id)

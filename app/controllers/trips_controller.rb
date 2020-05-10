@@ -1,8 +1,8 @@
 class TripsController < ApplicationController
 
-  def index
+  # def index
     
-	end
+	# end
 	
   def show
     @trip = Trip.find_by(id: params[:id])
@@ -79,8 +79,16 @@ class TripsController < ApplicationController
     redirect_to drivers_path
     flash[:success] = 'Trip removed'
     return
-	end
-	
+  end
+  
+  def rate
+    @trip = Trip.find_by(id: params[:id])
+    
+    if @trip.nil?
+      redirect_to root_path
+      return
+    end
+  end
   # def complete
   # end
 
