@@ -8,7 +8,6 @@ class PassengersController < ApplicationController
 
     if @passenger.nil?
       head :not_found
-      #redirect_to root_path
       return
     end
   end
@@ -19,6 +18,7 @@ class PassengersController < ApplicationController
 
   def create
     @passenger = Passenger.new(passenger_params)
+<<<<<<< HEAD
 
     if @passenger.save
       redirect_to passenger_path(@passenger.id)
@@ -26,6 +26,16 @@ class PassengersController < ApplicationController
     else
       render :new
       return
+=======
+    if !params.nil?
+      if @passenger.save
+        redirect_to passenger_path(@passenger.id)
+        return
+      else
+        render :new, :bad_request
+        return
+      end
+>>>>>>> 1060cfffba2674c3d2a683edcc16525569129328
     end
   end
 
