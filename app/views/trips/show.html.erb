@@ -1,11 +1,11 @@
 <section>
   <h2>Trip #<%= @trip.id %></h2>
     <p>
-      Date: <%= @trip.date %> <br>
-      Driver: <%= link_to @trip.driver.name, driver_path(@trip.driver.id) %> <br>
-      Passenger: <%= link_to @trip.passenger.name, passenger_path(@trip.passenger.id) %> <br>
-      Rating: <%= @trip.rating %> <br>
-      Cost: <%= number_to_currency(@trip.cost / 100.00) %> <br>
+      <strong>Date:</strong> <%= @trip.date %> <br>
+      <strong>Driver:</strong> <%= link_to @trip.driver.name, driver_path(@trip.driver.id) %> <br>
+      <strong>Passenger:</strong> <%= link_to @trip.passenger.name, passenger_path(@trip.passenger.id) %> <br>
+      <strong>Rating:</strong> <%= @trip.rating %> <br>
+      <strong>Cost:</strong> <%= number_to_currency(@trip.cost / 100.00) %> <br>
     </p>
 
   <div class="modify-options">
