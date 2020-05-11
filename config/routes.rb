@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :trips, except: [:index]
 
   resources :passengers do
-    resources :trips #only: [:show, :new]
+    resources :trips, only: [:create]
   end
 
   resources :drivers do
@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   end
 
   #get '/trips/:id/rate', to: 'trips#rate', as: 'rate'
+  patch '/drivers/:id/available', to: 'drivers#set_available', as: 'toggle_avail'
 end

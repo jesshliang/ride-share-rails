@@ -60,12 +60,39 @@ describe Driver do
 
   # Tests for methods you create should go here
   describe "custom methods" do
+    before do
+      @new_driver = Driver.new(name: "Kari", vin: "123", available: true)
+      @new_driver.save
+      new_passenger = Passenger.create(name: "Kari", phone_num: "111-111-1211")
+      trip_1 = Trip.create(driver_id: @new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1234)
+      trip_2 = Trip.create(driver_id: @new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 3, cost: 6334) 
+      trip_3 = Trip.create(driver_id: @new_driver.id, passenger_id: new_passenger.id, date: Date.today, rating: 5, cost: 1000) 
+    end
+
     describe "average rating" do
-      # Your code here
+      it "returns an average rounded to two decimal points with populated trips" do
+        expect(@new_driver.average_rating).must_be_close_to 4.33, 0.01
+      end
+
+      it "returns an average rating 0.0 if no trips" do
+        new_driver = Driver.new(name: "Kari", vin: "123", available: true)
+        new_driver.save
+
+        expect(new_driver.average_rating).must_equal 0.0
+      end
     end
 
     describe "total earnings" do
-      # Your code here
+      it "returns a total of for populated trips" do
+        expect(@new_driver.total_earnings).must_be_close_to 6850.44, 0.01
+      end
+
+      it "returns a total of 0 if no trips" do
+        new_driver = Driver.new(name: "Kari", vin: "123", available: true)
+        new_driver.save
+
+        expect(new_driver.total_earnings).must_equal 0
+      end
     end
 
     describe "can go online" do
