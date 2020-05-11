@@ -10,6 +10,7 @@ class Trip < ApplicationRecord
 
 	def completed?
 		self.completion = !self.completion
+		self.rating = rand(1..5)
 		self.save
 	end
 end

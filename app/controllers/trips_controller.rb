@@ -87,9 +87,7 @@ class TripsController < ApplicationController
   end
   
   def set_completion
-    puts "#{params[:id]} *******"
     @trip = Trip.find_by(id: params[:id])
-    puts "#{@trip.id} ****************"
 		@trip.completed?
     @trip.save
     redirect_to trip_path(@trip.id)
