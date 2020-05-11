@@ -14,12 +14,27 @@
 
       <header>
         <h1>Ride Share Rails</h1>
+
         <nav>
-          <%= link_to "Home", root_path %>
-          <%= link_to "Manage Passengers", passengers_path %>
-          <%= link_to "Manage Drivers", drivers_path %>
-          <%= link_to "Create New Passenger", new_passenger_path %>
-          <%= link_to "Create New Driver", new_driver_path %>
+          <nav class="dropdown">
+            <button class="dropbtn"><%= link_to "Home", root_path %></button>
+          </nav>
+
+          <nav class="dropdown">
+            <button class="dropbtn">Passengers</button>
+            <div class="dropdown-content">
+              <%= link_to "Manage Passengers", passengers_path %>
+              <%= link_to "Create New Passenger", new_passenger_path %>
+            </div>
+          </nav>
+
+          <nav class="dropdown">
+            <button class="dropbtn">Drivers</button>
+            <div class="dropdown-content">
+              <%= link_to "Manage Drivers", drivers_path %>
+              <%= link_to "Create New Driver", new_driver_path %>
+            </div>
+          </nav>
         </nav>
       </header>
 
