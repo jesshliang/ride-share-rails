@@ -10,7 +10,13 @@
     </p>
 
   <div class="modify-options">
-    <div><%= link_to 'Toggle Completion', toggle_completion_path(@trip), method: :patch %></div>
+    <div>
+      <% if @trip.completion == false %>
+        <%= link_to 'Mark as Complete', toggle_completion_path(@trip), method: :patch %>
+      <% else %>
+        <%= link_to 'Unmark as Complete', toggle_completion_path(@trip), method: :patch %>
+      <% end %>
+    </div>
     <div><%= link_to "Rate Trip", edit_trip_path(@trip.id) %></div>
     <div><%= link_to "Delete", trip_path(@trip.id), method: :delete, data: {confirm: "Are you sure?"} %></div>
   </div>
