@@ -11,6 +11,6 @@
   <div class="modify-options">
     <div><%= link_to "Rate Trip" %></div>
     <div><%= link_to "Edit", edit_trip_path(@trip.id) %></div>
-    <div><%= link_to "Delete", trip_path(@trip.id), method: :delete %></div>
+    <div><%= link_to "Delete", trip_path(@trip.id), method: :delete, data: {confirm: "Are you sure?"} %></div>
   </div>
 </section> 
