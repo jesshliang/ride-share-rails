@@ -45,12 +45,13 @@ class DriversController < ApplicationController
 			head :not_found
 			return
 		elsif @driver.update(driver_params)
-			redirect_to drivers_path
-			return
-		else
 			redirect_to driver_path(@driver.id)
-			return
-		end
+      flash[:success] = 'Driver updated'
+      return
+    else
+      render :edit
+      return
+    end
 	end
 
 	def destroy

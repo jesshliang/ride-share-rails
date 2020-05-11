@@ -21,50 +21,32 @@ describe TripsController do
 
   describe "create" do
     it "can create a new trip with valid information accurately, and redirect" do
-      driver = Driver.create(name: 'Leroy Jenkins', vin: 'SU9PYDRK6214WL15M')
+      driver = Driver.create(name: 'Leroy Jenkins', vin: 'SU9PYDRK6214WL15M', available: true)
       passenger = Passenger.create(name: "test person", phone_num: "1234567")
 
-      data_hash = {
-        trip: {
-          date: DateTime.now,
-          rating: 2,
-          cost: 100,
-        },
-      }
-
       expect {
-        post passenger_trips_path(passenger.id), params: data_hash
+        post passenger_trips_path(passenger.id)
       }.must_change 'Trip.count', 1
 
       new_trip = Trip.first
       
-      expect(new_trip.rating).must_equal data_hash[:trip][:rating]
-      expect(new_trip.cost).must_equal data_hash[:trip][:cost]
-      expect(new_trip.driver_id).must_equal data_hash[:trip][:driver_id]
-      expect(new_trip.passenger_id).must_equal data_hash[:trip][:passenger_id]
+      expect(new_trip.rating).must_be_nil
+      expect(new_trip.cost).must_be_kind_of Integer
+      expect(new_trip.driver_id).must_equal driver.id
+      expect(new_trip.passenger_id).must_equal passenger.id
 
-      must_redirect_to trip_path(new_trip.id)
+      must_redirect_to passenger_path(passenger.id)
     end
 
     it "does not create a trip if the form data violates Trip validations, and responds with a redirect" do
       driver = Driver.create(name: 'Leroy Jenkins', vin: 'SU9PYDRK6214WL15M', available: true)
       passenger = Passenger.create(name: "test person", phone_num: "1234567")
 
-      data_hash = {
-        trip: {
-          date: '',
-          rating: '',
-          cost: '',
-          driver_id: '',
-          passenger_id: passenger.id
-        }
-      }
-
       expect {
-        post trips_path, params: data_hash
+        post passenger_trips_path(-1)
       }.wont_change 'Trip.count'
 
-      must_respond_with :ok
+      must_redirect_to passenger_path(-1)
     end
   end
 
