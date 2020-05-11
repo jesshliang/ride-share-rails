@@ -29,15 +29,11 @@ describe TripsController do
           date: DateTime.now,
           rating: 2,
           cost: 100,
-          driver_id: driver.id,
-          passenger_id: passenger.id,
         },
       }
 
-      puts "****** #{passenger.id}"
-      puts trips_path
       expect {
-        post passenger_trips_path, params: data_hash
+        post passenger_trips_path(passenger.id), params: data_hash
       }.must_change 'Trip.count', 1
 
       new_trip = Trip.first
