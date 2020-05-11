@@ -3,22 +3,25 @@
 		<h2><%= @driver.name %></h2>
 		<ul>
 			<li>
-				VIN: <%= @driver.vin %>
+				<strong>VIN:</strong> <%= @driver.vin %>
 			</li>
 			<li>
-				Availibility: <%= @driver.available ? 'Available' : 'Not available' %>
+				<strong>Availibility:</strong> <%= @driver.available ? 'Available' : 'Not available' %>
 			</li>
 			<li>
-				Average Rating: <%= @driver.average_rating %>
+				<strong>Average Rating:</strong> <%= @driver.average_rating %>
 			</li>
 			<li>
-				Total Earnings: <%= number_to_currency(@driver.total_earnings / 100.0) %>
+				<strong>Total Earnings:</strong> <%= number_to_currency(@driver.total_earnings / 100.0) %>
 			</li>
 		</ul>
   </section>
 
   <nav class="options">
     <ul>
+      <li>
+	    	<%= link_to 'Toggle Availability', toggle_avail_path(@driver), method: :patch %>
+      </li>
       <li>
 	    	<%= link_to 'Edit', edit_driver_path(@driver) %>
       </li>

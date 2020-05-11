@@ -1,9 +1,5 @@
 class TripsController < ApplicationController
 
-  # def index
-    
-	# end
-	
   def show
     @trip = Trip.find_by(id: params[:id])
 
@@ -18,53 +14,26 @@ class TripsController < ApplicationController
   end
   
   def create
-    # passenger_trips = Trip.where(passenger_id: params[:passenger_id])
-    
-    # passenger_trips.each do |trip|
-    #   if trip.rating == nil
-    #     flash[:notice] = "Please complete and rate your previous trip"
-    #     redirect_to passenger_path(params[:passenger_id])
-    #     return
-    #   end
-    # end
-    
-    # driver = Driver.get_driver
-    
-    # if driver == nil
-    #   flash[:notice] = "There are no available drivers"
-    #   redirect_to passenger_path(params[:passenger_id])
-    #   return
-    # end
-    
-    # date = DateTime.now
-    # cost = rand(1000..9999).to_i
-    
-    # trip_hash = {
-    #   date: date,
-    #   driver_id: driver.id,
-    #   passenger_id: params[:passenger_id],
-    #   rating: nil,
-    #   cost: cost,
-    # }
-    @trip = Trip.new(trip_params)
+    driver = Driver.find_by(available: true)
+
+    @trip = Trip.new(
+      passenger_id: params[:passenger_id],
+      driver_id: driver.id,
+      date: Date.today,
+      rating: 0,
+      cost: rand(1000...3000)
+    )
+
     if @trip.save
+      driver.available?
       flash[:success] = 'Trip added'
-      redirect_to trip_path(@trip.id)
+      redirect_to passenger_path(params[:passenger_id])
+      return
     else
-      render :new
+      redirect_to passenger_path(params[:passenger_id])
+      return
     end
   end
-
-    # if !(params[:trip].nil?)
-    #   @trip = Trip.new(trip_params)
-
-    #   if @trip.save
-    #     redirect_to passenger_path(@trip.passenger_id)
-    #     return
-    #   end
-    # else
-    #   redirect_to root_path
-    # end
 	
   def edit
     id = params[:id]
@@ -83,8 +52,8 @@ class TripsController < ApplicationController
     if @trip.nil?
       head :not_found
       return
-    elsif @trip.update(trip_params)
-      redirect_to trips_path(@trip.id)
+    elsif @trip.update()
+      redirect_to trips_path
       flash[:success] = 'Trip updated'
       return
     else
@@ -96,27 +65,27 @@ class TripsController < ApplicationController
   def destroy
     id = params[:id]
     @trip = Trip.find_by(id: id)
-
     
     if @trip.nil?
       head :not_found
       return
     else
       @trip.destroy
-      redirect_to drivers_path
       flash[:success] = 'Trip removed'
+      redirect_to root_path
+      
       return
     end
   end
   
-  def rate
-    @trip = Trip.find_by(id: params[:id])
+  # def rate
+  #   @trip = Trip.find_by(id: params[:id])
     
-    if @trip.nil?
-      redirect_to root_path
-      return
-    end
-  end
+  #   if @trip.nil?
+  #     redirect_to root_path
+  #     return
+  #   end
+  # end
   # def complete
   # end
 
