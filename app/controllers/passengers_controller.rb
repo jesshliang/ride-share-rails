@@ -61,6 +61,7 @@ class PassengersController < ApplicationController
     end
 
     @passenger.destroy
+    
     redirect_to passengers_path
     flash.now[:success] = 'Passenger removed'
     return 
