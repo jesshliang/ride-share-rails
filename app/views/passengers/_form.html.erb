@@ -2,7 +2,7 @@
 	<ul>
 		<% @passenger.errors.each do |column, message| %>
 			<li>
-				<%= column %> <%= message %>
+				<%= column.capitalize %> <%= message %>.
 			</li>
 		<% end %>
 	</ul>
