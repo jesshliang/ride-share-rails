@@ -6,7 +6,7 @@
       <strong>Passenger:</strong> <%= link_to @trip.passenger.name, passenger_path(@trip.passenger.id) %> <br>
       <strong>Rating:</strong> <%= @trip.rating %> <br>
       <strong>Cost:</strong> <%= number_to_currency(@trip.cost / 100.00) %> <br>
-      <Strong>Complete?:</strong> <%= @trip.completion %>
+      <Strong>Complete?:</strong> <%= @trip.completion ? "Completed" : "Not Completed" %>
     </p>
 
   <div class="modify-options">

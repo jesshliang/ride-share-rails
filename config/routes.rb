@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   end
 
   patch '/drivers/:id/available', to: 'drivers#set_available', as: 'toggle_avail'
-  patch '/trips/:id/completion', to: 'drivers#set_completion', as: 'toggle_completion'
+  patch '/trips/:id/complete', to: 'trips#set_completion', as: 'toggle_completion'
 end
