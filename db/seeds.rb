@@ -59,6 +59,7 @@ CSV.foreach(TRIP_FILE, :headers => true) do |row|
   trip.date = Date.strptime(row['date'], '%Y-%m-%d')
   trip.rating = row['rating']
   trip.cost = row['cost']
+  trip.completion = false
   successful = trip.save
   if !successful
     trip_failures << trip

@@ -1,23 +1,21 @@
 <h2>Update Trip</h2>
 
-<%# <%= render partial: "form", locals: { action_name: "Edit Trip" } %>
-<% if flash[:notice] %>
-  <div class="notice"><%= flash[:notice] %></div>
-<% end %>
-
-<% if @trip.errors.any? %>
-  <ul class="errors">
-    <% @trip.errors.each do |column, message| %>
-      <li>
-        <strong><%= column.capitalize %></strong> <%= message %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
-
 <%= form_with model: @trip, class: "trip-form" do |f| %>
   <h3>Please enter information to edit trip: </h3>
   <div class="form">
+    <% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+    <% end %>
+
+    <% if @trip.errors.any? %>
+      <ul class="errors">
+        <% @trip.errors.each do |column, message| %>
+          <li>
+            <strong><%= column.capitalize %></strong> <%= message %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
     <section>
       ID: <%= @trip.id %>
     </section>

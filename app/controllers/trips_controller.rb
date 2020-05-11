@@ -15,15 +15,15 @@ class TripsController < ApplicationController
   
   def create
     driver = Driver.find_by(available: true)
-
+    
     @trip = Trip.new(
       passenger_id: params[:passenger_id],
       driver_id: driver.id,
       date: Date.today,
       rating: 0,
-      cost: rand(1000...3000)
+      cost: rand(1...3000)
     )
-
+    puts params
     if @trip.save
       driver.available?
       flash[:success] = 'Trip added'
@@ -78,16 +78,12 @@ class TripsController < ApplicationController
     end
   end
   
-  # def rate
-  #   @trip = Trip.find_by(id: params[:id])
-    
-  #   if @trip.nil?
-  #     redirect_to root_path
-  #     return
-  #   end
-  # end
-  # def complete
-  # end
+  def set_completion
+		@trip = Trip.find_by(id: params[:id])
+		@trip.update(completion: @trip.completed?)
+		
+		redirect_to trip_path(@trip.id)
+	end
 
   private
 

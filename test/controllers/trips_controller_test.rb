@@ -31,14 +31,17 @@ describe TripsController do
           cost: 100,
           driver_id: driver.id,
           passenger_id: passenger.id,
-        }
+        },
       }
 
+      puts "****** #{passenger.id}"
+      puts trips_path
       expect {
-        post trips_path, params: data_hash
+        post passenger_trips_path, params: data_hash
       }.must_change 'Trip.count', 1
 
       new_trip = Trip.first
+      
       expect(new_trip.rating).must_equal data_hash[:trip][:rating]
       expect(new_trip.cost).must_equal data_hash[:trip][:cost]
       expect(new_trip.driver_id).must_equal data_hash[:trip][:driver_id]
@@ -48,13 +51,16 @@ describe TripsController do
     end
 
     it "does not create a trip if the form data violates Trip validations, and responds with a redirect" do
+      driver = Driver.create(name: 'Leroy Jenkins', vin: 'SU9PYDRK6214WL15M', available: true)
+      passenger = Passenger.create(name: "test person", phone_num: "1234567")
+
       data_hash = {
         trip: {
           date: '',
           rating: '',
           cost: '',
           driver_id: '',
-          passenger_id: ''
+          passenger_id: passenger.id
         }
       }
 

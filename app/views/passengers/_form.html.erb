@@ -1,15 +1,15 @@
-<% if @passenger.errors.any? %>
-	<ul>
-		<% @passenger.errors.each do |column, message| %>
-			<li>
-				<%= column.capitalize %> <%= message %>.
-			</li>
-		<% end %>
-	</ul>
-<% end %>
 
 <%= form_with model: @passenger, class: "passenger-form" do |f| %>
 	<div class="form">
+		<% if @passenger.errors.any? %>
+			<ul>
+				<% @passenger.errors.each do |column, message| %>
+					<li>
+						<%= column.capitalize %> <%= message %>.
+					</li>
+				<% end %>
+			</ul>
+		<% end %>
 		<section>
 			<%= f.label :name %><br>
 			<%= f.text_field :name %>

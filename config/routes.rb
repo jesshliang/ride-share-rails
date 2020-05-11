@@ -12,6 +12,6 @@ Rails.application.routes.draw do
     resources :trips, only: [:show, :new]
   end
 
-  #get '/trips/:id/rate', to: 'trips#rate', as: 'rate'
   patch '/drivers/:id/available', to: 'drivers#set_available', as: 'toggle_avail'
+  patch '/trips/:id/completion', to: 'drivers#set_completion', as: 'toggle_completion'
 end
