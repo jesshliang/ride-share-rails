@@ -109,10 +109,9 @@ main {
 #homepage {
 	display: flex;
 	color: #fff;
-	background-image: url('/assets/image-catalog-background.jpg');
+	background-image: url('/assets/image-catalog-background.jpg'); 
 	background-size: cover;
 	min-height: 100vh;
-	min-width: 100vw;
 	margin: -3em;
 	padding: 3em 5em;
 	justify-content: flex-end;
