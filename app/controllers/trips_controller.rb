@@ -62,7 +62,7 @@ class TripsController < ApplicationController
       return
     elsif @trip.update()
       redirect_to trips_path
-      flash[:success] = 'Trip updated'
+      flash.now[:success] = 'Trip updated'
       return
     else
       render :edit

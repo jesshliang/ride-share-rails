@@ -20,7 +20,7 @@ class PassengersController < ApplicationController
   def create
     @passenger = Passenger.new(passenger_params)
     if @passenger.save
-      flash[:success] = 'Passenger added'
+      flash.now[:success] = 'Passenger added'
       redirect_to passenger_path(@passenger.id)
     else
       render :new
@@ -44,7 +44,7 @@ class PassengersController < ApplicationController
       return
     elsif @passenger.update(passenger_params)
       redirect_to passenger_path(@passenger.id)
-      flash[:success] = 'Passenger updated'
+      flash.now[:success] = 'Passenger updated'
       return
     else
       render :edit
