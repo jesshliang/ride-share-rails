@@ -1,8 +1,12 @@
 <section>
   <section>
     <h2><%= @passenger.name %></h2>
-    <img src='app/assets/images/20180706_194432.jpg' alt="photo of this passenger" />
     <section class="profile">
+      <% if @passenger.id <= 150 %>
+        <%= image_tag("https://placedog.net/300/300/?id=#{@passenger.id}", :alt => "photo of this passenger") %>
+      <% else %>
+        <%= image_tag("https://placedog.net/300/300/?id=#{@passenger.id / 3}", :alt => "photo of this passenger") %>
+      <% end %>
       <ul>
         <li>
           <strong>Phone Number:</strong> <%= @passenger.phone_num %>

@@ -2,7 +2,11 @@
 	<section>
 		<h2><%= @driver.name %></h2>
     <section class="profile">
-      <img src="../assets/images/n02112137_2181.jpg" alt="photo of this driver" />
+      <% if @driver.id <= 150 %>
+        <%= image_tag("https://placedog.net/300/300/?id=#{@driver.id}", :alt => "photo of this passenger") %>
+      <% else %>
+        <%= image_tag("https://placedog.net/300/300/?id=#{@driver.id / 3}", :alt => "photo of this passenger") %>
+      <% end %>
       <ul>
         <li>
           <strong>VIN:</strong> <%= @driver.vin %>
