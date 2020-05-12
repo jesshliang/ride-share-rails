@@ -28,6 +28,16 @@ class Driver < ApplicationRecord
 		return total
 	end
 
+	def total_rides
+		total = 0
+
+		self.trips.each do |trip|
+			total += 1
+		end
+
+		return total
+	end
+
 	def available?
 		self.available = !self.available
 		self.save

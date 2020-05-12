@@ -16,6 +16,7 @@
         <% end %>
       </ul>
     <% end %>
+    
     <section>
       ID: <%= @trip.id %>
     </section>
@@ -25,16 +26,13 @@
       Date: <%= @trip.date %>
     </section>
     <section>
-      <%= f.label :driver_name %><br>
-      <%= f.text_field :driver_name, value: @trip.driver.name %>
+      <%= f.label :driver_name %>: <%= @trip.driver.name %>
     </section>
     <section>
-      <%= f.label :passenger_name %><br>
-      <%= f.text_field :passenger_name, value: @trip.passenger.name %>
+      <%= f.label :passenger_name %>: <%= @trip.passenger.name %>
     </section>
     <section>
-      <%= f.label :cost %><br>
-      <%= f.number_field :cost %>
+      <%= f.label :cost %>: $<%= @trip.cost %>
     </section>
     <section>
       <%= f.label :rating %><br>

@@ -137,8 +137,6 @@ describe DriversController do
       expect {
         patch driver_path(driver_id), params: update_driver
       }.wont_change 'Driver.count'
-
-      must_redirect_to driver_path(driver_id)
     end
   end
 

@@ -28,13 +28,13 @@ class TripsController < ApplicationController
       passenger_id: params[:passenger_id],
       driver_id: driver.id,
       date: Date.today,
-      rating: 0,
+      rating: nil,
       cost: rand(1...3000)
     )
-    puts params
+
     if @trip.save
       driver.available?
-      flash[:success] = 'Trip added'
+      flash.now[:success] = 'Trip added'
       redirect_to passenger_path(params[:passenger_id])
       return
     else
@@ -60,9 +60,10 @@ class TripsController < ApplicationController
     if @trip.nil?
       head :not_found
       return
-    elsif @trip.update()
-      redirect_to trips_path
-      flash.now[:success] = 'Trip updated'
+    elsif @trip.update(rating: params[:trip][:rating])
+      @trip.save
+      redirect_to trip_path(@trip.id)
+      flash[:success] = 'Trip updated'
       return
     else
       render :edit
