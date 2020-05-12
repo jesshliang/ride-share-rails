@@ -46,5 +46,7 @@ class Driver < ApplicationRecord
 		self.available = !self.available
 		self.save
 	end
+
+	paginates_per 10
 	
 end
