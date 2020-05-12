@@ -1,14 +1,17 @@
 <section>
   <section>
     <h2><%= @passenger.name %></h2>
-    <ul>
-      <li>
-        <strong>Phone Number:</strong> <%= @passenger.phone_num %>
-      </li>
-      <li>
-        <strong>Total Charged:</strong> <%= number_to_currency(@passenger.total_charged / 100.0) %>
-      </li>
-    </ul>
+    <img src='app/assets/images/20180706_194432.jpg' alt="photo of this passenger" />
+    <section class="profile">
+      <ul>
+        <li>
+          <strong>Phone Number:</strong> <%= @passenger.phone_num %>
+        </li>
+        <li>
+          <strong>Total Charged:</strong> <%= number_to_currency(@passenger.total_charged / 100.0) %>
+        </li>
+      </ul>
+    </section>
   </section>
 
   <nav class="options">

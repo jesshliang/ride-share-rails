@@ -1,23 +1,26 @@
 <section>
 	<section>
 		<h2><%= @driver.name %></h2>
-		<ul>
-			<li>
-				<strong>VIN:</strong> <%= @driver.vin %>
-			</li>
-			<li>
-				<strong>Availibility:</strong> <%= @driver.available ? 'Available' : 'Not available' %>
-			</li>
-			<li>
-				<strong>Average Rating:</strong> <%= @driver.average_rating %>
-			</li>
-			<li>
-				<strong>Total Earnings:</strong> <%= number_to_currency(@driver.total_earnings / 100.0) %>
-			</li>
-      <li>
-				<strong>Total Rides:</strong> <%= @driver.total_rides %>
-			</li>
-		</ul>
+    <section class="profile">
+      <img src="../assets/images/n02112137_2181.jpg" alt="photo of this driver" />
+      <ul>
+        <li>
+          <strong>VIN:</strong> <%= @driver.vin %>
+        </li>
+        <li>
+          <strong>Availibility:</strong> <%= @driver.available ? 'Available' : 'Not available' %>
+        </li>
+        <li>
+          <strong>Average Rating:</strong> <%= @driver.average_rating %>
+        </li>
+        <li>
+          <strong>Total Earnings:</strong> <%= number_to_currency(@driver.total_earnings / 100.0) %>
+        </li>
+        <li>
+          <strong>Total Rides:</strong> <%= @driver.total_rides %>
+        </li>
+      </ul>
+    </section>
   </section>
 
   <nav class="options">

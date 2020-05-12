@@ -123,7 +123,7 @@ describe DriversController do
       must_respond_with :not_found
     end
 
-    it "does not create a driver if the form data violates Driver validations, and responds with a redirect" do
+    it "does not update a driver if the form data violates Driver validations, and responds with a redirect" do
       driver = Driver.create(name: 'Leroy Jenkins', vin: 'SU9PYDRK6214WL15M')
       driver_id = driver.id
 
@@ -152,7 +152,7 @@ describe DriversController do
       must_redirect_to drivers_path
     end
 
-    it "does not change the db when the driver does not exist, then responds with " do
+    it "does not change the db when the driver does not exist, then responds with redirect" do
       expect {
         delete driver_path(-1)
       }.wont_change 'Driver.count'
