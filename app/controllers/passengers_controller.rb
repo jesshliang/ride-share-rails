@@ -1,6 +1,5 @@
 class PassengersController < ApplicationController
   def index
-    #@passengers = Passenger.order(:id).all
     @passengers = Passenger.order(:id).all.page(params[:page])
   end
 
@@ -69,6 +68,7 @@ class PassengersController < ApplicationController
   end
   
   private 
+  
   def passenger_params
     if !params[:passenger].nil?
       return params.require(:passenger).permit(:name, :phone_num)

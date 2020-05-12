@@ -86,8 +86,52 @@ describe PassengersController do
   end
 
   describe "update" do
-    # Your tests go here
-    # later my head hurts
+    let (:update_hash) {
+      {
+        passenger: {
+          name: 'Leroy Jenkins',
+          phone_num: '4443339999'
+        }
+      }
+    }
+
+    it "can update an existing passenger with valid information accurately, and redirect" do
+      passenger = Passenger.create(name: "test person", phone_num: "1234567")
+
+      expect {
+        patch passenger_path(passenger.id), params: update_hash
+      }.wont_change 'Passenger.count'
+
+      must_respond_with :redirect
+      must_redirect_to passenger_path(passenger.id)
+
+      find_passenger = Passenger.find_by(id: passenger.id)
+      expect(find_passenger.name).must_equal update_hash[:passenger][:name]
+      expect(find_passenger.phone_num).must_equal update_hash[:passenger][:phone_num]
+    end
+
+    it "does not update any passenger if given an invalid id, and responds with a 404" do
+      expect {
+        patch passenger_path(-1), params: update_hash
+      }.wont_change 'Driver.count'
+
+      must_respond_with :not_found
+    end
+
+    it "does not update a passenger if the form data violates passenger validations, and responds with a redirect" do
+      passenger = Passenger.create(name: "test person", phone_num: "1234567")
+
+      update = {
+        passenger: {
+          name: '',
+          phone_num: ''
+        }
+      }
+
+      expect {
+        patch passenger_path(passenger.id), params: update
+      }.wont_change 'Passenger.count'
+    end
   end
 
   describe "destroy" do
@@ -104,16 +148,6 @@ describe PassengersController do
       expect {delete passenger_path(-1)}.wont_change 'Passenger.count'
       must_respond_with :redirect
       must_redirect_to passengers_path
-    end
-  end
-
-  describe "request trip" do
-    it "creates a new trip" do
-      # test_passenger = Passenger.create(name: "test person", phone_num: "1234567")
-      # test_driver = Driver.create(name: "name", vin: "1234")
-      # expect {
-      #   get request_trip_path(test_passenger.id)
-      # }.must_change 'test_passenger.trips.count', 1
     end
   end
 end
