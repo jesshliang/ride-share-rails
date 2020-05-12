@@ -21,6 +21,7 @@ class DriversController < ApplicationController
 		@driver = Driver.new(driver_params)
 
 		if @driver.save
+			flash[:success] = 'Driver added'
 			redirect_to driver_path(@driver.id)
 			return
 		else
@@ -65,6 +66,7 @@ class DriversController < ApplicationController
 		@driver.destroy
 
 		redirect_to drivers_path
+		flash[:success] = 'Driver removed'
 		return
 	end
 

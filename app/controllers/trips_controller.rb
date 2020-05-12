@@ -34,7 +34,7 @@ class TripsController < ApplicationController
 
     if @trip.save
       driver.available?
-      flash.now[:success] = 'Trip added'
+      flash[:success] = 'Trip added'
       redirect_to passenger_path(params[:passenger_id])
       return
     else
