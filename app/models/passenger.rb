@@ -10,6 +10,7 @@ class Passenger < ApplicationRecord
       total += trip.cost
     end
     return total
-	end
+  end
+  
 	paginates_per 10
 end

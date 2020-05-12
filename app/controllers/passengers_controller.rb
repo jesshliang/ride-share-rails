@@ -2,8 +2,6 @@ class PassengersController < ApplicationController
   def index
     #@passengers = Passenger.order(:id).all
     @passengers = Passenger.order(:id).all.page(params[:page])
-
-    
   end
 
   def show
@@ -70,54 +68,6 @@ class PassengersController < ApplicationController
     return 
   end
   
-  # def request_trip
-  #   passenger_id = params[:id]
-  #   @passenger = Passenger.find_by(id: passenger_id)
-
-  #   if @passenger.nil?
-  #     redirect_to passengers_path
-  #     return
-  #   end
-
-  #   driver = Driver.all.first
-  #   date = DateTime.now
-
-  #   trip_params = {
-  #     trip: {
-  #       date: date,
-  #       driver_id: driver.id,
-  #       passenger_id: passenger_id,
-  #       rating: nil,
-  #       cost: nil,
-  #     }
-  #   }
-
-  #   redirect_to trips_path, params: trip_params
-  #   return
-  # end
-
-  # def complete
-  #   @passenger = Passenger.find_by(id: params[:id])
-
-  #   if @passenger.nil?
-  #     redirect_to passengers_path
-  #     return
-  #   end
-
-  #   if @passenger.completion_date == nil
-  #     @passenger.completion_date = Time.now
-  #   else
-  #     @passenger.completion_date = nil
-  #   end
-
-  #   unless @passenger.save 
-  #     redirect_to passengers_path
-  #   end
-
-  #   redirect_to passengers_path
-  #   return 
-  # end
-
   private 
   def passenger_params
     if !params[:passenger].nil?
